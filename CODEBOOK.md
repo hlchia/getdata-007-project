@@ -98,7 +98,7 @@ Finally we merge the test datasets using `cbind' function
 merged_x_test <- cbind(subject_test, y_test, x_test)
 ```
 
-### Repeat the process same for the training datasets
+### Repeat the process for the training datasets
 
 We repeat the same process for the training datasets to get a merged training dataset
 ```
@@ -107,6 +107,7 @@ merged_x_train <- cbind(subject_train, y_train, x_train)
 
 
 ### Merges the training and the test sets to create one data set.
+
 As now both the training and test datasets have the same columns, we combine them into a single dataset using the `rbind` function.
 ```
 merged_x <- rbind(merged_x_test, merged_x_train)

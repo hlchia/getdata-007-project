@@ -114,3 +114,71 @@ x_test <- read.table("test/x_test.txt")
 ```
 
 
+### Extracts only the measurements on the mean and standard deviation for each measurement. 
+
+As we are only interested in the variables on mean and standard deviation, we will setup a logical vector
+using the regular expression function `grepl` for columns containing words "-std" OR "-mean"
+
+`target_cols <- grepl("-std()|-mean()", features[,2]) `
+
+### Uses descriptive activity names to name the activities in the data set
+
+The descriptive activity names are loaded into `activity_labels` dataset, we add a new column the test data and update it with the corresponding descriptive name in `activity_labels`.
+```
+y_test$V2 <- activity_labels[y_test$V1, 2] 
+```
+
+### Appropriately labels the data set with descriptive variable names. 
+
+Next we tidy up the test data with descriptive variable names
+```
+names(subject_test) = "Subject"
+names(y_test) = c("Activity_Id", "Activity")
+names(x_test) = features[,2]
+```
+
+### Extracts only the measurements on the mean and standard deviation for each measurement. 
+
+We include only the variables we want using the logical vector `target_cols` we setup earlier
+```
+x_test <- x_test[,target_cols]
+```
+
+Finally we merge the test datasets using `cbind' function
+```
+merged_x_test <- cbind(subject_test, y_test, x_test)
+```
+
+### Repeat the process same for the training datasets
+
+We repeat the same process for the training datasets to get a merged training dataset
+```
+merged_x_train <- cbind(subject_train, y_train, x_train)
+```
+
+
+### Merges the training and the test sets to create one data set.
+As now both the training and test datasets have the same columns, we combine them into a single dataset using the `rbind` function.
+```
+merged_x <- rbind(merged_x_test, merged_x_train)
+```
+
+
+### Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+We use the `aggregate` function and apply `mean` function to the all the features columns only (starting from 4th column till the end) and according to each Subject and each Activity. The newly merged tidy data is then stored in `tidy_data`  data table
+
+```
+tidy_data <- aggregate(merged_x[,4:ncol(merged_x)], by=list(Subject = merged_x$Subject, Activity = merged_x$Activity), FUN=mean, na.rm = TRUE)
+```
+
+Finally we write the `tidy_data`a into a tab delimited text file, excluding the row names column
+
+
+```
+write.table(tidy_data, "tidy_data.txt", sep = "\t", row.names = FALSE)
+```
+
+
+
+

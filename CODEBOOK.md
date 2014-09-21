@@ -2,6 +2,8 @@
 
 Author: [Chia Hock Lai](https://github.com/hlchia)
 
+## Introduction
+This file describes the data, variables and approach that has been taken to clean up the data.
 
 ## Variables and Descriptions
 
@@ -96,4 +98,19 @@ Author: [Chia Hock Lai](https://github.com/hlchia)
  $ fBodyBodyGyroJerkMag-std()     : num  -0.933 -0.989 -0.983 -0.983 -0.983 ...
  $ fBodyBodyGyroJerkMag-meanFreq(): num  0.1765 0.2648 0.1107 0.2029 0.0247 ...
    ``` 
+## Approach
+
+### Load the datasets of training, test, activty labels and features
+
+Download and unzip the data based on the url provided by the instructor.
+
+Use `read.table` to load the data.
+```
+features <- read.table("features.txt")
+activity_labels <- read.table("activity_labels.txt")
+subject_test <- read.table("test/subject_test.txt")
+y_test <- read.table("test/y_test.txt") 
+x_test <- read.table("test/x_test.txt") 
+```
+
 

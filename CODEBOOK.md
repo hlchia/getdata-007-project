@@ -20,8 +20,7 @@ Each record includes:
     5. An identifier of the subject who carried out the experiment.
 
 
-
-### Descriptions of files included in the dataset
+Descriptions of files included in the dataset:
 
 
     1. 'features_info.txt': Shows information about the variables used on the feature vector.

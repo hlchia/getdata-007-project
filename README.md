@@ -1,5 +1,7 @@
-# getdata-007-project
-===================
+# Project for Getting and Cleaning Data
+
+Author: [Chia Hock Lai](https://github.com/hlchia)
+
 
 ## Steps to reproduce this project
 
